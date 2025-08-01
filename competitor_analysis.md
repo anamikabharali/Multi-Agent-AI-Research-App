@@ -1,0 +1,1 @@
+The comprehensive analysis provides detailed insights into the competitive landscape for AI BI platforms, laying out the robust scoring rubric and relevant evidence behind each competitor's scores and market positioning.
