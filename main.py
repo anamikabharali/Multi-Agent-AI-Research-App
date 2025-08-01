@@ -1,4 +1,5 @@
 import os
+os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
 import sys
 from crewai import Crew, Process
 from agents import MarketResearchAgents
@@ -7,6 +8,8 @@ from dotenv import load_dotenv
 print("DEBUG — running with:", sys.executable)
 print("DEBUG — PYTHONPATH  :", os.environ.get("PYTHONPATH"))
 
+
+from crewai import Crew, Process
 # Load environment variables from .env file
 load_dotenv()
 
