@@ -19,13 +19,24 @@ class MarketResearchTasks:
     def competitor_analysis_task(self, agent):
         return Task(
             description=(
-                "Conduct an exhaustive analysis of the competitive landscape for {product_name}. "
-                "Define a detailed scoring rubric with 5-6 key criteria. Identify and analyze at least 4-6 competitors. "
+                "Conduct an exhaustive analysis of the competitive landscape for {product_name} in the {industry} sector. "
+                "CRITICAL: You MUST search for and identify REAL, ACTUAL competitors by their actual company names. "
+                "Do NOT use generic names like 'Competitor 1' or 'Competitor 2'. "
+                "Search for companies like Tableau, Power BI, Looker, Qlik, Sisense, Domo, etc. for BI tools, "
+                "or search for actual companies in the {industry} space. "
+                "Define a detailed scoring rubric with 5-6 key criteria. Identify and analyze at least 4-6 real competitors. "
                 "For each, provide a lengthy, narrative-driven profile, covering their history, strategy, strengths, and weaknesses. "
                 "IMPORTANT: Create a transparent scoring system where market share scores add up to 100% across all competitors, "
                 "and provide detailed rationale for each score based on specific data points and evidence. "
                 "If a specific competitor is provided in {competitor_focus}, conduct an especially detailed analysis of that competitor. "
-                "Be opinionated and bold in your assessments - don't be afraid to call out overhyped products or highlight underappreciated strengths."
+                "Be opinionated and bold in your assessments - don't be afraid to call out overhyped products or highlight underappreciated strengths. "
+                "Use your search tools to find actual competitor information, pricing, reviews, and market data. "
+                "Search for specific queries like: 'top competitors in {industry}', '{industry} companies list', "
+                "'{industry} market leaders', 'best {industry} tools', '{industry} software comparison'. "
+                "Make sure to identify real company names and gather actual data about their products, pricing, and market position. "
+                "CRITICAL: Document the ACTUAL URLs you find during your searches. "
+                "Record every website URL you visit and every source you discover. "
+                "These real URLs will be used in the appendix - do NOT use placeholder URLs."
             ),
             expected_output=(
                 "A detailed competitor analysis report in Markdown format. The report must include:\n"
@@ -159,7 +170,10 @@ class MarketResearchTasks:
                 "   - **Threats**: External risks with specific scenarios, impact assessment, and competitive threats\n"
                 "   - For each SWOT element, provide 3-5 detailed points with extensive explanations and evidence\n"
                 "7. **Bold Strategic Recommendations**: 5-7 high-level, actionable recommendations with extensive justification and reasoning.\n"
-                "8. **Appendix A: Research Sources**: Complete list of all sources, links, and references used throughout the report.\n"
+                "8. **Appendix A: Research Sources**: Complete list of all sources, links, and references used throughout the report. "
+                "CRITICAL: Include only REAL, WORKING URLs that you actually found during your research. "
+                "Do NOT include placeholder URLs like 'example.com'. "
+                "Document the actual websites, articles, and sources you discovered.\n"
                 "\n"
                 "REPORT REQUIREMENTS:\n"
                 "- Be extremely detailed and wordy - length is not a concern\n"
@@ -171,6 +185,9 @@ class MarketResearchTasks:
                 "- Include detailed explanations for every SWOT element\n"
                 "- Provide comprehensive source documentation in the appendix with actual URLs and links\n"
                 "- Ensure every claim in the report has a corresponding source link in the appendix\n"
+                "- CRITICAL: All URLs in the appendix must be REAL, WORKING links from your search results\n"
+                "- DO NOT use placeholder URLs like 'example.com' or 'website.com'\n"
+                "- Document the actual URLs you found during your research\n"
                 "- If refocus_mode is true, create a focused analysis that specifically addresses the additional context while building upon existing research"
             ),
             agent=agent,

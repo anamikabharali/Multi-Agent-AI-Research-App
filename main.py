@@ -1,14 +1,9 @@
 import os
-# Avoid Chroma completely by disabling memory in CrewAI
-# This line does not hurt, but the real fix is memory=False below
-os.environ["CHROMA_DB_IMPL"] = "duckdb+parquet"
-
 import sys
-from dotenv import load_dotenv
+from crewai import Crew, Process
 from agents import MarketResearchAgents
 from tasks import MarketResearchTasks
-from crewai import Crew, Process  # Import AFTER os.environ
-
+from dotenv import load_dotenv
 print("DEBUG — running with:", sys.executable)
 print("DEBUG — PYTHONPATH  :", os.environ.get("PYTHONPATH"))
 
@@ -60,7 +55,8 @@ def run():
     critique_task = tasks.risk_critique_task(devils_advocate, [planning_task, competitor_task, customer_task])
     synthesis_task = tasks.synthesis_task(synthesizer, [planning_task, competitor_task, customer_task, critique_task])
 
-    # Assemble the crew WITHOUT memory (prevents chromadb from loading)
+
+    # Assemble the crew
     crew = Crew(
         agents=[
             consultant,
@@ -77,9 +73,7 @@ def run():
             synthesis_task
         ],
         process=Process.sequential,
-        verbose=True,
-        memory=False,        # <<--- CRITICAL: disables default memory
-        knowledge=None       # <<--- Ensure no knowledge sources
+        verbose=True # Set to False to hide backend logs as requested
     )
 
     # Kick off the crew's work
@@ -87,6 +81,7 @@ def run():
     result = crew.kickoff(inputs=inputs)
     print("\n\n✅ Crew execution finished.")
     print("📝 Final Report Generated: final_market_analysis_report.md")
+    # print(result) # The result is now a large markdown file, better to just confirm it was created.
 
 if __name__ == "__main__":
     run()

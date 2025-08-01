@@ -1,11 +1,13 @@
 from crewai import Agent
 from crewai_tools import FirecrawlScrapeWebsiteTool, FileReadTool
 from tools.custom_search_tool import WebSearchTool
+from tools.fallback_search_tool import FallbackSearchTool
 
 class MarketResearchAgents:
     def __init__(self):
         self.scrape_tool = FirecrawlScrapeWebsiteTool()
         self.read_file_tool = FileReadTool()
+        self.fallback_search_tool = FallbackSearchTool()
 
     def strategy_consultant(self):
         return Agent(
@@ -29,11 +31,18 @@ class MarketResearchAgents:
             role='Competitor Analyst',
             goal=(
                 "Identify key competitors for {product_name} in the {industry} sector. "
+                "CRITICAL: You MUST search for and identify REAL, ACTUAL competitors by their actual company names. "
+                "Do NOT use generic names like 'Competitor 1' or 'Competitor 2'. "
+                "Use your search tools to find actual companies in the {industry} space. "
                 "Develop comprehensive scoring rubrics with detailed criteria for each category using 1-5 scales. "
                 "Provide extremely detailed analysis with extensive evidence-based scoring where market share percentages add up to 100%. "
                 "Create detailed evidence columns with specific data points, sources, and rationale for every score. "
                 "If a specific competitor is provided, conduct an especially deep-dive analysis on that competitor. "
-                "Document all sources and links used in the analysis with actual URLs for the appendix."
+                "Document all sources and links used in the analysis with actual URLs for the appendix. "
+                "Search for real competitor information including pricing, features, reviews, and market data. "
+                "CRITICAL: Collect and document the ACTUAL URLs from your search results. "
+                "Do NOT use placeholder URLs like 'example.com'. "
+                "Record the real websites you visit and the actual sources you find."
             ),
             backstory=(
                 "A meticulous analyst with a background in competitive intelligence and market research. You are an expert at "
@@ -42,7 +51,7 @@ class MarketResearchAgents:
                 "You have strong opinions about market dynamics and aren't afraid to call out overhyped products. "
                 "You believe in thorough documentation and always provide extensive evidence for every assessment."
             ),
-            tools=[WebSearchTool(), self.scrape_tool],
+            tools=[WebSearchTool(), self.scrape_tool, self.fallback_search_tool],
             verbose=True
         )
 
@@ -61,7 +70,7 @@ class MarketResearchAgents:
                 "the 'who' behind the product. You're not afraid to challenge conventional wisdom about customer segments "
                 "and often spot overlooked opportunities or hidden pain points that others miss."
             ),
-            tools=[WebSearchTool(), self.scrape_tool],
+            tools=[WebSearchTool(), self.scrape_tool, self.fallback_search_tool],
             verbose=True
         )
 
@@ -95,6 +104,9 @@ class MarketResearchAgents:
                 "evidence columns with total scores out of 25, and complete source documentation with actual URLs. "
                 "Make decisive recommendations that help users take firm action. "
                 "Ensure every claim has a corresponding source link in the appendix. "
+                "CRITICAL: All URLs in the appendix must be REAL, WORKING links from the research. "
+                "Do NOT use placeholder URLs like 'example.com'. "
+                "Document the actual websites, articles, and sources discovered during research. "
                 "If in refocus mode, create a focused analysis that specifically addresses the additional context while building upon existing research findings."
             ),
             backstory=(

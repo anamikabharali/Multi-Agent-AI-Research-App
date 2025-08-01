@@ -6,6 +6,10 @@ import os
 st.title("🤖 Strategic Market Research AI Crew")
 st.write("This AI crew conducts a comprehensive market analysis based on your product and target market details. Please provide as much detail as possible for the best results.")
 
+# Add debug option in sidebar
+with st.sidebar:
+    debug_mode = st.checkbox("Debug Mode", help="Enable debug mode to see raw markdown content")
+
 st.sidebar.header("Configuration")
 
 with st.sidebar:
@@ -63,10 +67,23 @@ if submit_button:
     # The final report is now a single, comprehensive document
     report_file = 'final_market_analysis_report.md'
     try:
-        with open(report_file, 'r') as f:
+        with open(report_file, 'r', encoding='utf-8') as f:
             report_content = f.read()
+        
+        # Clean up the markdown content
+        import re
+        # Remove any problematic characters that might break markdown rendering
+        report_content = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]', '', report_content)
+        
         with st.expander(f"View: {report_file}", expanded=True):
-            st.markdown(report_content)
+            if debug_mode:
+                st.code(report_content, language='markdown')
+            else:
+                try:
+                    st.markdown(report_content, unsafe_allow_html=False)
+                except Exception as e:
+                    st.error(f"Error rendering markdown: {e}")
+                    st.code(report_content, language='markdown')
 
         st.download_button(
             label=f"Download {report_file}",
@@ -117,12 +134,22 @@ if submit_button:
                         # Display the refocused report
                         refocus_report_file = 'refocused_market_analysis_report.md'
                         try:
-                            with open(refocus_report_file, 'r') as f:
+                            with open(refocus_report_file, 'r', encoding='utf-8') as f:
                                 refocus_report_content = f.read()
+                            
+                            # Clean up the markdown content
+                            refocus_report_content = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]', '', refocus_report_content)
                             
                             st.header("📄 Refocused Analysis Report")
                             with st.expander(f"View: {refocus_report_file}", expanded=True):
-                                st.markdown(refocus_report_content)
+                                if debug_mode:
+                                    st.code(refocus_report_content, language='markdown')
+                                else:
+                                    try:
+                                        st.markdown(refocus_report_content, unsafe_allow_html=False)
+                                    except Exception as e:
+                                        st.error(f"Error rendering markdown: {e}")
+                                        st.code(refocus_report_content, language='markdown')
 
                             st.download_button(
                                 label=f"Download Refocused Report",
