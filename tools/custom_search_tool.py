@@ -40,7 +40,11 @@ class WebSearchTool(BaseTool):
                     "description": result.get('description', 'No Description')
                 })
 
-            return str(formatted_results)
+            # Also return a list of URLs for documentation
+            urls_found = [result.get('url') for result in search_result['data'] if result.get('url')]
+            
+            result_text = f"Search Results:\n{str(formatted_results)}\n\nURLs Found: {urls_found}"
+            return result_text
 
         except Exception as e:
             return f"An error occurred during the web search with Firecrawl: {e}"
