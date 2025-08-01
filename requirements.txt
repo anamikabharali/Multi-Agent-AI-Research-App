@@ -8,7 +8,7 @@ openai==1.63.2
 anthropic==0.54.0
 
 # Web scraping and search tools
-firecrawl==0.1.0
+firecrawl==2.16.3
 requests==2.31.0
 beautifulsoup4==4.12.0
 
