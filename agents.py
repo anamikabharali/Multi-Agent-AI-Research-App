@@ -42,7 +42,10 @@ class MarketResearchAgents:
                 "Search for real competitor information including pricing, features, reviews, and market data. "
                 "CRITICAL: Collect and document the ACTUAL URLs from your search results. "
                 "Do NOT use placeholder URLs like 'example.com'. "
-                "Record the real websites you visit and the actual sources you find."
+                "Record the real websites you visit and the actual sources you find. "
+                "MINIMUM REQUIREMENT: Collect at least 15-20 real URLs for the appendix. "
+                "Evidence must be SPECIFIC: '4.5/5 rating on G2 with 2,500+ reviews', '$70/month starting price', '35% market share'. "
+                "Do NOT use vague descriptions like 'various reports' or 'industry sources'."
             ),
             backstory=(
                 "A meticulous analyst with a background in competitive intelligence and market research. You are an expert at "
@@ -107,6 +110,9 @@ class MarketResearchAgents:
                 "CRITICAL: All URLs in the appendix must be REAL, WORKING links from the research. "
                 "Do NOT use placeholder URLs like 'example.com'. "
                 "Document the actual websites, articles, and sources discovered during research. "
+                "MINIMUM REQUIREMENT: Include at least 10-15 real URLs in the appendix. "
+                "SWOT analysis must include REAL NUMBERS and STATISTICS: market sizes, growth rates, market shares, revenue figures. "
+                "Evidence must be SPECIFIC with actual data points, not vague descriptions. "
                 "If in refocus mode, create a focused analysis that specifically addresses the additional context while building upon existing research findings."
             ),
             backstory=(

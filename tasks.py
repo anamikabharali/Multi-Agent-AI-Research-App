@@ -36,7 +36,10 @@ class MarketResearchTasks:
                 "Make sure to identify real company names and gather actual data about their products, pricing, and market position. "
                 "CRITICAL: Document the ACTUAL URLs you find during your searches. "
                 "Record every website URL you visit and every source you discover. "
-                "These real URLs will be used in the appendix - do NOT use placeholder URLs."
+                "These real URLs will be used in the appendix - do NOT use placeholder URLs. "
+                "Evidence column must contain SPECIFIC data points like: '4.5/5 rating on G2 with 2,500+ reviews', "
+                "'$70/month starting price according to official website', '35% market share based on Gartner 2024 report'. "
+                "Do NOT use vague descriptions like 'various reports' or 'industry sources'."
             ),
             expected_output=(
                 "A detailed competitor analysis report in Markdown format. The report must include:\n"
@@ -169,6 +172,9 @@ class MarketResearchTasks:
                 "   - **Opportunities**: External factors with detailed market analysis, growth potential, and strategic opportunities\n"
                 "   - **Threats**: External risks with specific scenarios, impact assessment, and competitive threats\n"
                 "   - For each SWOT element, provide 3-5 detailed points with extensive explanations and evidence\n"
+                "   - CRITICAL: Include REAL NUMBERS, STATISTICS, and MARKET FIGURES in SWOT analysis\n"
+                "   - Use specific data like: 'Market size of $25.6B in 2024', '35% annual growth rate', 'Competitor X has 45% market share'\n"
+                "   - Do NOT use vague statements without supporting numbers"
                 "7. **Bold Strategic Recommendations**: 5-7 high-level, actionable recommendations with extensive justification and reasoning.\n"
                 "8. **Appendix A: Research Sources**: Complete list of all sources, links, and references used throughout the report. "
                 "CRITICAL: Include only REAL, WORKING URLs that you actually found during your research. "
@@ -188,6 +194,10 @@ class MarketResearchTasks:
                 "- CRITICAL: All URLs in the appendix must be REAL, WORKING links from your search results\n"
                 "- DO NOT use placeholder URLs like 'example.com' or 'website.com'\n"
                 "- Document the actual URLs you found during your research\n"
+                "- MINIMUM REQUIREMENT: Include at least 10-15 real URLs in the appendix\n"
+                "- Every claim in the report must have a corresponding real URL\n"
+                "- Evidence column must contain specific data points, not vague descriptions\n"
+                "- SWOT analysis must include real numbers, statistics, and market figures\n"
                 "- If refocus_mode is true, create a focused analysis that specifically addresses the additional context while building upon existing research"
             ),
             agent=agent,

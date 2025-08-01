@@ -43,7 +43,12 @@ class WebSearchTool(BaseTool):
             # Also return a list of URLs for documentation
             urls_found = [result.get('url') for result in search_result['data'] if result.get('url')]
             
-            result_text = f"Search Results:\n{str(formatted_results)}\n\nURLs Found: {urls_found}"
+            # Create a detailed URL list for the appendix
+            url_documentation = []
+            for i, url in enumerate(urls_found, 1):
+                url_documentation.append(f"{i}. {url}")
+            
+            result_text = f"Search Results:\n{str(formatted_results)}\n\nURLs Found for Appendix:\n{chr(10).join(url_documentation)}"
             return result_text
 
         except Exception as e:
