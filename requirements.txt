@@ -1,0 +1,26 @@
+# Core dependencies for MarketMind
+crewai==0.28.0
+streamlit==1.28.0
+python-dotenv==1.0.0
+
+# OpenAI and AI dependencies
+openai==1.63.2
+anthropic==0.54.0
+
+# Web scraping and search tools
+firecrawl==0.1.0
+requests==2.31.0
+beautifulsoup4==4.12.0
+
+# Data processing
+pandas==2.1.4
+numpy==1.26.4
+
+# Utilities
+pydantic==2.10.6
+typing-extensions==4.12.2
+
+# Additional dependencies that crewai needs
+langchain==0.3.52
+langchain-openai==0.1.52
+langchain-community==0.3.52
