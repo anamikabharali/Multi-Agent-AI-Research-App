@@ -1,6 +1,6 @@
 # 🚀 MarketMinds - Multi-Agent AI Market Research Crew
 
-A sophisticated multi-agent AI crew that conducts comprehensive market research like a team of expert consultants, but faster and smarter.
+A sophisticated multi-agent AI crew that conducts comprehensive market research like a team of expert consultants, but faster and smarter. (https://www.linkedin.com/feed/update/urn:li:activity:7358527296812503044/)
 
 ## 🌟 What Makes This Special?
 
